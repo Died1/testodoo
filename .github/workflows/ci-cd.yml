@@ -15,5 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Print message
-        run: echo "Hello, world! This is a simple webhook."
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Build and deploy
+        run: |
+          yarn build
+          # Inserta aquí el comando para desplegar tu aplicación
+          echo "La aplicación ha sido desplegada exitosamente."

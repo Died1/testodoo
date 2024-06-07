@@ -20,6 +20,6 @@ jobs:
 
       - name: Build and deploy
         run: |
-          yarn build
+          yarn dev
           # Inserta aquí el comando para desplegar tu aplicación
           echo "La aplicación ha sido desplegada exitosamente."

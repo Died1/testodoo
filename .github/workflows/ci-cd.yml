@@ -15,6 +15,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run script
-        run: yarn dev
-          # Inserta aquí el comando o secuencia de comandos que deseas ejecutar
+      - name: Print message
+        run: echo "Hello, world! This is a simple webhook."

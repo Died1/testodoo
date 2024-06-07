@@ -3,7 +3,7 @@ name: Webhook
 on:
   push:
     branches:
-      - main
+      - master
   repository_dispatch:
     types: [webhook-event]  # Esto escuchará el evento de webhook específico
 

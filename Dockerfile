@@ -1,20 +1,26 @@
-# Use Node.js as base image
-FROM node:18
+# Usa una imagen base de Node.js
+FROM node:18-alpine
 
-# Set working directory inside the container
-WORKDIR /usr/src/app
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
 
-# Copy package.json and yarn.lock to install dependencies
-COPY package.json yarn.lock ./
+# Copia el package.json y el package-lock.json
+COPY package*.json ./
 
-# Install dependencies
-RUN yarn install --frozen-lockfile
+# Instala las dependencias del proyecto
+RUN npm install
 
-# Copy the rest of the application code
+# Copia el resto del código de la aplicación
 COPY . .
 
-# Build the application
-RUN yarn build
+# Construye la aplicación para producción
+RUN npm run build
 
-# Command to start the application
-CMD ["yarn", "start"]
+# Instala un servidor web simple para servir la aplicación
+RUN npm install -g serve
+
+# Expon el puerto definido por Cloud Run
+EXPOSE $PORT
+
+# Comando para ejecutar la aplicación
+CMD ["sh", "-c", "serve -s dist -l $PORT"]
